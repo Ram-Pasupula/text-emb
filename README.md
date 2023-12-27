@@ -1,3 +1,13 @@
+curl 0.0.0.0:8080/embed \
+    -X POST \
+    -d '{"inputs":"What is Deep Learning?"}' \
+    -H 'Content-Type: application/json'
+
+
+
+ model=/tmp/te                  
+(base) mac@C02XR00BLCM6 text-emb % ./text-embeddings-router --model-id $model  --port 8080
+
 https://github.com/huggingface/text-embeddings-inference
 
 CPU

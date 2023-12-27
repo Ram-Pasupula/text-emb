@@ -1,0 +1,27 @@
+#FROM nvidia/cuda:12.2.0-base-ubi7
+FROM alpine/git:2.43.0
+FROM rust:slim-buster
+#FROM python:3.9.18-slim-bullseye
+
+
+WORKDIR /app
+RUN mkdir -p /tmp/te
+# Uncomment the following line if you need a volume
+VOLUME ["/tmp/te"] 
+
+COPY text-embeddings-router /app/
+# Set executable permission for the binary
+RUN chmod +x /app/text-embeddings-router
+
+COPY run.sh /app/run.sh
+# Make "run.sh" executable
+RUN chmod +x /app/run.sh
+
+EXPOSE 8080
+
+# Set the entry point for the container
+#ENTRYPOINT ["/bin/sh"]
+
+CMD ["/bin/sh", "./run.sh" ]
+
+#CMD ["--json-output"]
